@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import setCells from '../Helpers/setCells';
 import handleSetBoard from '../Helpers/handleSetBoard';
+import isInside from '../Helpers/isInside';
+import isCorner from '../Helpers/isCorner';
 
 class Board extends Component {
   static defaultProps = {
@@ -29,41 +31,85 @@ class Board extends Component {
   flipCellsAround = (coord) => {
     const stateCopy = Object.assign({}, this.state);
     const { board, hasWon } = stateCopy;
-    const { nrows, ncols } = this.props;
     const [ x, y ] = coord.split("-").map(Number);
-    console.log('x:', x, "y:",y);
 
     // flips the boolean on board
-    function flipCell(x, y) { board[x][y] = !board[x][y]; }
+    function flipCell(x, y) {
+      console.log('from flipCell', x, y)
+      board[x][y] = !board[x][y];
+    }
 
     // row 0
-    if (x===0 && y===0) {
-      flipCell(0, 0);
-      flipCell(0, 1);
-      flipCell(1, 0);
+    // if (x===0 && y===0) { // corner
+    //   flipCell(0, 0);
+    //   flipCell(0, 1);
+    //   flipCell(1, 0);
 
-    } else if (x===0 && y===1){
-      flipCell(0, 1);
-      flipCell(0, 2);
-      flipCell(1, 1);
+    // } else if (x===0 && y===1){
+    //   flipCell(0, 0);
+    //   flipCell(0, 1);
+    //   flipCell(0, 2);
+    //   flipCell(1, 1);
 
-    } else if (x===0 && y===2){
-      flipCell(0, 2);
-      flipCell(0, 1);
-      flipCell(0, 3);
-      flipCell(1, 2);
+    // } else if (x===0 && y===2){
+    //   flipCell(0, 2);
+    //   flipCell(0, 1);
+    //   flipCell(0, 3);
+    //   flipCell(1, 2);
 
-    } else if (x===0 && y===3){
-      flipCell(0, 3);
-      flipCell(0, 2);
-      flipCell(0, 4);
-      flipCell(1, 3);
+    // } else if (x===0 && y===3){
+    //   flipCell(0, 3);
+    //   flipCell(0, 2);
+    //   flipCell(0, 4);
+    //   flipCell(1, 3);
 
-    } else if (x===0 && y===4){
-      flipCell(0, 4);
-      flipCell(0, 3);
-      flipCell(1, 4);
+    // } else if (x===0 && y===4){ // corner
+    //   flipCell(0, 4);
+    //   flipCell(0, 3);
+    //   flipCell(1, 4);
+    // } else { return null }
+
+    function flipInside(x, y) {
+      console.log('from flipInside', x, y)
+      flipCell(x-1, y);
+      flipCell(x+1, y);
+      flipCell(x, y+1);
+      flipCell(x, y-1);
     }
+
+    if (isInside(x)) {
+      if (isInside(y)) {
+
+        console.log('clicked on inside part X section');
+        flipInside(x, y);
+
+      } else if (y === 0 || y === 4) {
+        console.log('clicked on the side-middle edges');
+
+      }
+
+    } else if (isCorner(x, y)) {
+      console.log('clicked on the corder L section');
+
+    } else if (x === 0 || x === 4 ) {
+      console.log('clicked on the top/bottom-middle edges');
+
+    }
+
+
+
+    // function flipEdges(){}
+
+    // x either
+      // +1 row0
+      // x+1 && x-1 in between
+      // -1 last row
+
+
+    // y either
+      // +1 col0
+      // y+1 & y-1 in between
+      // -1 last col
 
 
     // row 1

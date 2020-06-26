@@ -1,5 +1,6 @@
 import React from 'react';
 import Cell from "../Components/Cell";
+import shortid from 'shortid'
 
 const setCells = (arr, x, func) => {
 
@@ -9,7 +10,7 @@ const setCells = (arr, x, func) => {
 
             <Cell
                 isLit={c}
-                key={i}
+                key={shortid.generate()}
                 coordinates={`${x}-${i}`}
                 flipCellsAroundMe={func}
             />
