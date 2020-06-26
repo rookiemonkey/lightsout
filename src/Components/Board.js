@@ -6,8 +6,9 @@ import isAllOut from '../Helpers/isAllOut';
 
 class Board extends Component {
   static defaultProps = {
-    //  will only accept two, same odd numbers that is the same
+    // will only accept two, same odd numbers that is the same
     // might get some errors in evaluating isInside if not add
+    // when adding, might need to add tr tag on render since its still hardcoded
     ncols: 5,
     nrows: 5
   }
