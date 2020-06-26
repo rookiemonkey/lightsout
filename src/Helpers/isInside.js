@@ -1,5 +1,5 @@
-const isInside = c => {
-    return c > 0 && c < 4
+const isInside = (c, nrows) => {
+    return c > 0 && c < nrows-1
 }
 
 export default isInside;

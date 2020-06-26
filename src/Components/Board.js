@@ -6,6 +6,8 @@ import isAllOut from '../Helpers/isAllOut';
 
 class Board extends Component {
   static defaultProps = {
+    //  will only accept two, same odd numbers that is the same
+    // might get some errors in evaluating isInside if not add
     ncols: 5,
     nrows: 5
   }
@@ -30,11 +32,12 @@ class Board extends Component {
 
   flipCellsAround = (coord) => {
     const stateCopy = Object.assign({}, this.state);
+    const { nrows, ncols } = this.props;
     const { board, hasWon } = stateCopy;
     const [ x, y ] = coord.split("-").map(Number);
 
     // flips the boolean on board
-    evaluateFlip(x, y, board);
+    evaluateFlip(x, y, board, nrows, ncols);
 
     // evaluate the board if everything is false
     const result = isAllOut(board);
