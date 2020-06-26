@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import setCells from '../Helpers/setCells';
+import handleFlipCell from '../Helpers/handleFlipCell';
+import handleFlipCellInside from '../Helpers/handleFlipCellInside';
 import handleSetBoard from '../Helpers/handleSetBoard';
 import isInside from '../Helpers/isInside';
 import isCorner from '../Helpers/isCorner';
@@ -34,10 +36,7 @@ class Board extends Component {
     const [ x, y ] = coord.split("-").map(Number);
 
     // flips the boolean on board
-    function flipCell(x, y) {
-      console.log('from flipCell', x, y)
-      board[x][y] = !board[x][y];
-    }
+    function flipCell(x, y) { handleFlipCell(x, y, board); }
 
     // row 0
     // if (x===0 && y===0) { // corner
@@ -69,21 +68,11 @@ class Board extends Component {
     //   flipCell(1, 4);
     // } else { return null }
 
-    function flipInside(x, y) {
-      console.log('from flipInside', x, y)
-      flipCell(x-1, y);
-      flipCell(x+1, y);
-      flipCell(x, y+1);
-      flipCell(x, y-1);
-    }
+    function flipInside(x, y) { handleFlipCellInside(x, y, flipCell) }
 
     if (isInside(x)) {
-      if (isInside(y)) {
-
-        console.log('clicked on inside part X section');
-        flipInside(x, y);
-
-      } else if (y === 0 || y === 4) {
+      if (isInside(y)) { flipInside(x, y); }
+      else if (y === 0 || y === 4) {
         console.log('clicked on the side-middle edges');
 
       }
@@ -113,16 +102,16 @@ class Board extends Component {
 
 
     // row 1
-    if (x===1) { return null }
+    // if (x===1) { return null }
 
-    // row 2
-    if (x===2) { return null }
+    // // row 2
+    // if (x===2) { return null }
 
-    // row 3
-    if (x===3) { return null }
+    // // row 3
+    // if (x===3) { return null }
 
-    // row 4
-    if (x===4) { return null }
+    // // row 4
+    // if (x===4) { return null }
 
 
     // win when every cell is turned off
