@@ -83,11 +83,16 @@ class Board extends Component {
 
     // TODO
     const { board } = this.state;
+    const cells = board.map(r => {
+      return r.map((c, i) => {
+        return <Cell isLit={c} />
+      })
+    })
 
     return (
 
       <article className="Board">
-
+        { cells }
       </article>
 
     )
