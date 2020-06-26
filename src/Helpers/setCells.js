@@ -4,7 +4,7 @@ import shortid from 'shortid'
 
 const setCells = (arr, x, func) => {
 
-    return arr.map((c, i) => {
+    const row = arr.map((c, i) => {
 
         return (
 
@@ -17,6 +17,14 @@ const setCells = (arr, x, func) => {
 
         )
     })
+
+    return (
+
+        <tr key={shortid.generate()}>
+            { row }
+        </tr>
+
+    )
 }
 
 export default setCells;

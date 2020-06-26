@@ -8,7 +8,6 @@ class Board extends Component {
   static defaultProps = {
     // will only accept two, same odd numbers that is the same
     // might get some errors in evaluating isInside if not add
-    // when adding, might need to add tr tag on render since its still hardcoded
     ncols: 5,
     nrows: 5
   }
@@ -30,7 +29,6 @@ class Board extends Component {
   setBoard = () => { handleSetBoard(this.props.nrows, this.props.ncols); }
 
   /** handle changing a cell: update board & determine if winner */
-
   flipCellsAround = (coord) => {
     const stateCopy = Object.assign({}, this.state);
     const { nrows, ncols } = this.props;
@@ -48,39 +46,15 @@ class Board extends Component {
 
   }
 
-
-  /** Render game board or winning message only */
-
   render() {
-
-    let row0, row1, row2, row3, row4;
-    const [ r0, r1, r2, r3, r4 ] = this.state.board;
-    if (this.state.board.length === 5) {
-      row0 = setCells(r0, '0', this.flipCellsAround);
-      row1 = setCells(r1, '1', this.flipCellsAround);
-      row2 = setCells(r2, '2', this.flipCellsAround);
-      row3 = setCells(r3, '3', this.flipCellsAround);
-      row4 = setCells(r4, '4', this.flipCellsAround);
+    const { nrows } = this.props;
+    const { board } = this.state;
+    let grid;
+    if (board.length > 0) {
+      grid = board.map((r, i) => {
+        return setCells(r, i, this.flipCellsAround);
+      })
     }
-    const grid =  <table>
-        <tbody>
-      <tr>
-        { row0 }
-      </tr>
-      <tr>
-        { row1 }
-      </tr>
-      <tr>
-        { row2 }
-      </tr>
-      <tr>
-        { row3 }
-      </tr>
-        <tr>
-        { row4 }
-      </tr>
-    </tbody>
-    </table>
 
     return (
       <>
@@ -99,7 +73,11 @@ class Board extends Component {
                 <div className='neon-orange'>Lights</div>
                 <div className='neon-blue'>Out</div>
               </div>
-              { grid }
+              <table>
+                <tbody>
+                  { grid }
+                </tbody>
+              </table>
             </div>
             )
         }
