@@ -21,8 +21,8 @@ class Board extends Component {
   }
 
   componentDidMount() {
-    const { nrows, ncols } = this.props
-    this.setState({ ...this.state, board: handleSetBoard(nrows, ncols) })
+    const { nrows, ncols } = this.props;
+    this.setState({ ...this.state, board: handleSetBoard(nrows, ncols) });
   }
 
   /** set the board with an array-of-arrays containing true/false for lit or unlit */
@@ -46,6 +46,11 @@ class Board extends Component {
 
   }
 
+  handlePlayAgain = () => {
+    const { nrows, ncols } = this.props;
+    this.setState({ hasWon: false, board: handleSetBoard(nrows, ncols) });
+  }
+
   render() {
     const { board } = this.state;
     let grid;
@@ -64,6 +69,7 @@ class Board extends Component {
             <div className='winner'>
               <span className='neon-orange'>YOU</span>
               <span className='neon-blue'>WIN!</span>
+              <button onClick={this.handlePlayAgain}>Play Again</button>
             </div>
             )
           : (
