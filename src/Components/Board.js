@@ -45,7 +45,8 @@ class Board extends Component {
   }
 
   componentDidMount() {
-    this.setState({ ...this.state, board: handleSetBoard(this.props.nrows, this.props.ncols) })
+    const { nrows, ncols } = this.props
+    this.setState({ ...this.state, board: handleSetBoard(nrows, ncols) })
   }
 
   /** set the board with an array-of-arrays containing true/false for lit or unlit */
@@ -82,15 +83,36 @@ class Board extends Component {
 
     // if the game is won, just show a winning msg & render nothing else
 
-    // TODO
-    const { board } = this.state;
-    const cells = setCells(board);
+    const [ r1, r2, r3, r4, r5 ] = this.state.board;
+    let row1, row2, row3, row4, row5;
+    if (this.state.board.length === 5) {
+      row1 = setCells(r1);
+      row2 = setCells(r2);
+      row3 = setCells(r3);
+      row4 = setCells(r4);
+      row5 = setCells(r5);
+    }
+
 
     return (
 
-      <article className="Board">
-        { cells }
-      </article>
+      <tbody>
+        <tr>
+          { row1 }
+        </tr>
+        <tr>
+          { row2 }
+        </tr>
+        <tr>
+          { row3 }
+        </tr>
+        <tr>
+          { row4 }
+        </tr>
+          <tr>
+          { row5 }
+        </tr>
+      </tbody>
 
     )
   }

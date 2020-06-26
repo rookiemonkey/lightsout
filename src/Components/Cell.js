@@ -22,7 +22,6 @@ class Cell extends Component {
   }
 
   render() {
-    console.log(this.props)
     let classes = "Cell" + (this.props.isLit ? " Cell-lit" : "");
 
     return (
