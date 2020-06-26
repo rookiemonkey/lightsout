@@ -4,6 +4,8 @@ import handleFlipCell from '../Helpers/handleFlipCell';
 import handleFlipCellInside from '../Helpers/handleFlipCellInside';
 import handleFlipCellLeft from '../Helpers/handleFlipCellLeft';
 import handleFlipCellRight from '../Helpers/handleFlipCellRight';
+import handleFlipCellTopMiddle from '../Helpers/handleFlipCellTopMiddle';
+import handleFlipCellBottomMiddle from '../Helpers/handleFlipCellBottomMiddle';
 import handleSetBoard from '../Helpers/handleSetBoard';
 import isInside from '../Helpers/isInside';
 import isCorner from '../Helpers/isCorner';
@@ -42,6 +44,8 @@ class Board extends Component {
     function flipInside(x, y) { handleFlipCellInside(x, y, flipCell) };
     function flipLeftSide(x, y) { handleFlipCellLeft(x, y, flipCell) };
     function flipRigthSide(x, y) { handleFlipCellRight(x, y, flipCell) };
+    function flipTopMiddle(x, y) { handleFlipCellTopMiddle(x, y, flipCell) };
+    function flipBottomMiddle(x ,y) { handleFlipCellBottomMiddle(x, y, flipCell) };
 
     if (isInside(x)) {
       if (isInside(y)) { flipInside(x, y); }
@@ -51,40 +55,8 @@ class Board extends Component {
     } else if (isCorner(x, y)) {
       console.log('clicked on the corder L section');
 
-    } else if (x === 0) {
-      console.log('clicked on the top middle edge');
-
-    } else if (x === 4) {
-      console.log('clicked on the bottom middle edge');
-    }
-
-
-
-    // function flipEdges(){}
-
-    // x either
-      // +1 row0
-      // x+1 && x-1 in between
-      // -1 last row
-
-
-    // y either
-      // +1 col0
-      // y+1 & y-1 in between
-      // -1 last col
-
-
-    // row 1
-    // if (x===1) { return null }
-
-    // // row 2
-    // if (x===2) { return null }
-
-    // // row 3
-    // if (x===3) { return null }
-
-    // // row 4
-    // if (x===4) { return null }
+    } else if (x === 0) { flipTopMiddle(x, y); }
+    else if (x === 4) { flipBottomMiddle(x, y); }
 
 
     // win when every cell is turned off
