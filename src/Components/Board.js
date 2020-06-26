@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import setCells from '../Helpers/setCells';
 import handleFlipCell from '../Helpers/handleFlipCell';
 import handleFlipCellInside from '../Helpers/handleFlipCellInside';
+import handleFlipCellCorner from '../Helpers/handleFlipCellCorner';
 import handleFlipCellLeft from '../Helpers/handleFlipCellLeft';
 import handleFlipCellRight from '../Helpers/handleFlipCellRight';
 import handleFlipCellTopMiddle from '../Helpers/handleFlipCellTopMiddle';
@@ -42,20 +43,19 @@ class Board extends Component {
     // flips the boolean on board
     function flipCell(x, y) { handleFlipCell(x, y, board); };
     function flipInside(x, y) { handleFlipCellInside(x, y, flipCell) };
+    function flipCorner(x, y) { handleFlipCellCorner(x, y, flipCell) };
     function flipLeftSide(x, y) { handleFlipCellLeft(x, y, flipCell) };
     function flipRigthSide(x, y) { handleFlipCellRight(x, y, flipCell) };
     function flipTopMiddle(x, y) { handleFlipCellTopMiddle(x, y, flipCell) };
     function flipBottomMiddle(x ,y) { handleFlipCellBottomMiddle(x, y, flipCell) };
 
+    // evaluate the coordinate that was clicked
     if (isInside(x)) {
       if (isInside(y)) { flipInside(x, y); }
       else if (y === 0) { flipLeftSide(x, y); }
       else if (y === 4) { flipRigthSide(x, y); }
-
-    } else if (isCorner(x, y)) {
-      console.log('clicked on the corder L section');
-
-    } else if (x === 0) { flipTopMiddle(x, y); }
+    } else if (isCorner(x, y)) { flipCorner(x, y); }
+    else if (x === 0) { flipTopMiddle(x, y); }
     else if (x === 4) { flipBottomMiddle(x, y); }
 
 
