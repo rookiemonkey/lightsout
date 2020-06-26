@@ -47,7 +47,6 @@ class Board extends Component {
   }
 
   render() {
-    const { nrows } = this.props;
     const { board } = this.state;
     let grid;
     if (board.length > 0) {
