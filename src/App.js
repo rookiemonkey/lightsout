@@ -4,9 +4,9 @@ import Board from "./Components/Board";
 class LightsOutApp extends Component {
   render() {
     return (
-      <table className='Board'>
+      <article className='Board'>
         <Board />
-      </table>
+      </article>
     );
   }
 }

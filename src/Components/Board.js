@@ -34,7 +34,7 @@ class Board extends Component {
   flipCellsAround = (coord) => {
     const stateCopy = Object.assign({}, this.state);
     const { nrows, ncols } = this.props;
-    const { board, hasWon } = stateCopy;
+    const { board } = stateCopy;
     const [ x, y ] = coord.split("-").map(Number);
 
     // flips the boolean on board
@@ -62,30 +62,53 @@ class Board extends Component {
       row3 = setCells(r3, '3', this.flipCellsAround);
       row4 = setCells(r4, '4', this.flipCellsAround);
     }
+    const grid =  <table>
+        <tbody>
+      <tr>
+        { row0 }
+      </tr>
+      <tr>
+        { row1 }
+      </tr>
+      <tr>
+        { row2 }
+      </tr>
+      <tr>
+        { row3 }
+      </tr>
+        <tr>
+        { row4 }
+      </tr>
+    </tbody>
+    </table>
 
     return (
+      <>
 
-      <tbody>
-        <tr>
-          { row0 }
-        </tr>
-        <tr>
-          { row1 }
-        </tr>
-        <tr>
-          { row2 }
-        </tr>
-        <tr>
-          { row3 }
-        </tr>
-          <tr>
-          { row4 }
-        </tr>
-      </tbody>
+        {
+          (this.state.hasWon)
+          ? (
+            <div className='winner'>
+              <span className='neon-orange'>YOU</span>
+              <span className='neon-blue'>WIN!</span>
+            </div>
+            )
+          : (
+            <div>
+              <div className='Board-title'>
+                <div className='neon-orange'>Lights</div>
+                <div className='neon-blue'>Out</div>
+              </div>
+              { grid }
+            </div>
+            )
+        }
 
+      </>
     )
   }
 }
 
 
 export default Board;
+
