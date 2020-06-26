@@ -1,6 +1,7 @@
 import React, {Component} from "react";
-import Cell from "./Cell";
+import setCells from '../Helpers/setCells';
 import handleSetBoard from '../Helpers/handleSetBoard';
+
 
 
 /** Game board of Lights out.
@@ -83,11 +84,7 @@ class Board extends Component {
 
     // TODO
     const { board } = this.state;
-    const cells = board.map(r => {
-      return r.map((c, i) => {
-        return <Cell isLit={c} />
-      })
-    })
+    const cells = setCells(board);
 
     return (
 
