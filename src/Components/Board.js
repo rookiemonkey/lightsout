@@ -54,21 +54,24 @@ class Board extends Component {
 
   /** handle changing a cell: update board & determine if winner */
 
-  flipCellsAround(coord) {
-    let {ncols, nrows} = this.props;
-    let board = this.state.board;
-    let [y, x] = coord.split("-").map(Number);
+  flipCellsAround = (coord) => {
+    const board = this.state.board;
+    const { nrows, ncols } = this.props
+    const [ x, y ] = coord.split("-").map(Number);
+
+    // function flipCell(y, x) {
+    //   // if this coord is actually on board, flip it
+
+    //   if (x >= 0 && x < ncols && y >= 0 && y < nrows) {
+    //     board[y][x] = !board[y][x];
+    //   }
+    // }
 
 
-    function flipCell(y, x) {
-      // if this coord is actually on board, flip it
-
-      if (x >= 0 && x < ncols && y >= 0 && y < nrows) {
-        board[y][x] = !board[y][x];
-      }
-    }
 
     // TODO: flip this cell and the cells around it
+
+
 
     // win when every cell is turned off
     // TODO: determine is the game has been won
@@ -83,20 +86,23 @@ class Board extends Component {
 
     // if the game is won, just show a winning msg & render nothing else
 
-    const [ r1, r2, r3, r4, r5 ] = this.state.board;
-    let row1, row2, row3, row4, row5;
+    let row0, row1, row2, row3, row4;
+    const [ r0, r1, r2, r3, r4 ] = this.state.board;
     if (this.state.board.length === 5) {
-      row1 = setCells(r1);
-      row2 = setCells(r2);
-      row3 = setCells(r3);
-      row4 = setCells(r4);
-      row5 = setCells(r5);
+      row0 = setCells(r0, '0', this.flipCellsAround);
+      row1 = setCells(r1, '1', this.flipCellsAround);
+      row2 = setCells(r2, '2', this.flipCellsAround);
+      row3 = setCells(r3, '3', this.flipCellsAround);
+      row4 = setCells(r4, '4', this.flipCellsAround);
     }
 
 
     return (
 
       <tbody>
+        <tr>
+          { row0 }
+        </tr>
         <tr>
           { row1 }
         </tr>
@@ -106,11 +112,8 @@ class Board extends Component {
         <tr>
           { row3 }
         </tr>
-        <tr>
-          { row4 }
-        </tr>
           <tr>
-          { row5 }
+          { row4 }
         </tr>
       </tbody>
 
