@@ -15,7 +15,7 @@ class Cell extends Component {
         <td
             className={classes}
             onClick={this.handleClick}
-        >{this.props.coordinates} </td>
+        ></td>
 
     )
   }
