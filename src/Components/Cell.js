@@ -11,7 +11,12 @@ class Cell extends Component {
     const classes = "Cell" + (this.props.isLit ? " Cell-lit" : "");
 
     return (
-        <td className={classes} onClick={this.handleClick} />
+
+        <td
+            className={classes}
+            onClick={this.handleClick}
+        >{this.props.coordinates} </td>
+
     )
   }
 }

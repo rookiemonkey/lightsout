@@ -2,34 +2,6 @@ import React, {Component} from "react";
 import setCells from '../Helpers/setCells';
 import handleSetBoard from '../Helpers/handleSetBoard';
 
-
-
-/** Game board of Lights out.
- *
- * Properties:
- *
- * - nrows: number of rows of board
- * - ncols: number of cols of board
- * - chanceLightStartsOn: float, chance any cell is lit at start of game
- *
- * State:
- *
- * - hasWon: boolean, true when board is all off
- * - board: array-of-arrays of true/false
- *
- *    For this board:
- *       .  .  .
- *       1  1  .     (where . is off, and 1 is on)
- *       .  .  .
- *
- *    This would be: [[f, f, f], [t, t, f], [f, f, f]]
- *
- *  This should render an HTML table of individual <Cell /> components.
- *
- *  This doesn't handle any clicks --- clicks are on individual cells
- *
- **/
-
 class Board extends Component {
   static defaultProps = {
     ncols: 5,
@@ -55,28 +27,62 @@ class Board extends Component {
   /** handle changing a cell: update board & determine if winner */
 
   flipCellsAround = (coord) => {
-    const board = this.state.board;
-    const { nrows, ncols } = this.props
+    const stateCopy = Object.assign({}, this.state);
+    const { board, hasWon } = stateCopy;
+    const { nrows, ncols } = this.props;
     const [ x, y ] = coord.split("-").map(Number);
+    console.log('x:', x, "y:",y);
 
-    // function flipCell(y, x) {
-    //   // if this coord is actually on board, flip it
+    // flips the boolean on board
+    function flipCell(x, y) { board[x][y] = !board[x][y]; }
 
-    //   if (x >= 0 && x < ncols && y >= 0 && y < nrows) {
-    //     board[y][x] = !board[y][x];
-    //   }
-    // }
+    // row 0
+    if (x===0 && y===0) {
+      flipCell(0, 0);
+      flipCell(0, 1);
+      flipCell(1, 0);
+
+    } else if (x===0 && y===1){
+      flipCell(0, 1);
+      flipCell(0, 2);
+      flipCell(1, 1);
+
+    } else if (x===0 && y===2){
+      flipCell(0, 2);
+      flipCell(0, 1);
+      flipCell(0, 3);
+      flipCell(1, 2);
+
+    } else if (x===0 && y===3){
+      flipCell(0, 3);
+      flipCell(0, 2);
+      flipCell(0, 4);
+      flipCell(1, 3);
+
+    } else if (x===0 && y===4){
+      flipCell(0, 4);
+      flipCell(0, 3);
+      flipCell(1, 4);
+    }
 
 
+    // row 1
+    if (x===1) { return null }
 
-    // TODO: flip this cell and the cells around it
+    // row 2
+    if (x===2) { return null }
 
+    // row 3
+    if (x===3) { return null }
+
+    // row 4
+    if (x===4) { return null }
 
 
     // win when every cell is turned off
     // TODO: determine is the game has been won
 
-    // this.setState({board, hasWon});
+    this.setState({ board, hasWon });
   }
 
 
