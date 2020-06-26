@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import setCells from '../Helpers/setCells';
 import handleFlipCell from '../Helpers/handleFlipCell';
 import handleFlipCellInside from '../Helpers/handleFlipCellInside';
+import handleFlipCellLeft from '../Helpers/handleFlipCellLeft';
+import handleFlipCellRight from '../Helpers/handleFlipCellRight';
 import handleSetBoard from '../Helpers/handleSetBoard';
 import isInside from '../Helpers/isInside';
 import isCorner from '../Helpers/isCorner';
@@ -36,53 +38,24 @@ class Board extends Component {
     const [ x, y ] = coord.split("-").map(Number);
 
     // flips the boolean on board
-    function flipCell(x, y) { handleFlipCell(x, y, board); }
-
-    // row 0
-    // if (x===0 && y===0) { // corner
-    //   flipCell(0, 0);
-    //   flipCell(0, 1);
-    //   flipCell(1, 0);
-
-    // } else if (x===0 && y===1){
-    //   flipCell(0, 0);
-    //   flipCell(0, 1);
-    //   flipCell(0, 2);
-    //   flipCell(1, 1);
-
-    // } else if (x===0 && y===2){
-    //   flipCell(0, 2);
-    //   flipCell(0, 1);
-    //   flipCell(0, 3);
-    //   flipCell(1, 2);
-
-    // } else if (x===0 && y===3){
-    //   flipCell(0, 3);
-    //   flipCell(0, 2);
-    //   flipCell(0, 4);
-    //   flipCell(1, 3);
-
-    // } else if (x===0 && y===4){ // corner
-    //   flipCell(0, 4);
-    //   flipCell(0, 3);
-    //   flipCell(1, 4);
-    // } else { return null }
-
-    function flipInside(x, y) { handleFlipCellInside(x, y, flipCell) }
+    function flipCell(x, y) { handleFlipCell(x, y, board); };
+    function flipInside(x, y) { handleFlipCellInside(x, y, flipCell) };
+    function flipLeftSide(x, y) { handleFlipCellLeft(x, y, flipCell) };
+    function flipRigthSide(x, y) { handleFlipCellRight(x, y, flipCell) };
 
     if (isInside(x)) {
       if (isInside(y)) { flipInside(x, y); }
-      else if (y === 0 || y === 4) {
-        console.log('clicked on the side-middle edges');
-
-      }
+      else if (y === 0) { flipLeftSide(x, y); }
+      else if (y === 4) { flipRigthSide(x, y); }
 
     } else if (isCorner(x, y)) {
       console.log('clicked on the corder L section');
 
-    } else if (x === 0 || x === 4 ) {
-      console.log('clicked on the top/bottom-middle edges');
+    } else if (x === 0) {
+      console.log('clicked on the top middle edge');
 
+    } else if (x === 4) {
+      console.log('clicked on the bottom middle edge');
     }
 
 
