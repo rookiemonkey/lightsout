@@ -10,6 +10,7 @@ import handleFlipCellBottomMiddle from '../Helpers/handleFlipCellBottomMiddle';
 import handleSetBoard from '../Helpers/handleSetBoard';
 import isInside from '../Helpers/isInside';
 import isCorner from '../Helpers/isCorner';
+import isAllOut from '../Helpers/isAllOut';
 
 class Board extends Component {
   static defaultProps = {
@@ -58,19 +59,17 @@ class Board extends Component {
     else if (x === 0) { flipTopMiddle(x, y); }
     else if (x === 4) { flipBottomMiddle(x, y); }
 
+    // evaluate the board if everything is false
+    const result = isAllOut(board);
 
-    // win when every cell is turned off
-    // TODO: determine is the game has been won
-
-    this.setState({ board, hasWon });
+    // set the state with the result
+    this.setState({ board, hasWon: result });
   }
 
 
-  /** Render game board or winning message. */
+  /** Render game board or winning message only */
 
   render() {
-
-    // if the game is won, just show a winning msg & render nothing else
 
     let row0, row1, row2, row3, row4;
     const [ r0, r1, r2, r3, r4 ] = this.state.board;
@@ -81,7 +80,6 @@ class Board extends Component {
       row3 = setCells(r3, '3', this.flipCellsAround);
       row4 = setCells(r4, '4', this.flipCellsAround);
     }
-
 
     return (
 
