@@ -1,6 +1,4 @@
-const handleSetBoard = () => {
-    const nrows = 5 // emptyBoard.length
-    const ncols = 5 // emptyBoard[i].length
+const handleSetBoard = (nrows, ncols) => {
 
     // board creates the row
     const board = Array(nrows).fill().map(row => {
@@ -15,6 +13,7 @@ const handleSetBoard = () => {
         return cells;
 
     })
+
     return board;
 
 }

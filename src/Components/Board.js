@@ -30,18 +30,25 @@ import handleSetBoard from '../Helpers/handleSetBoard';
  **/
 
 class Board extends Component {
+  static defaultProps = {
+    ncols: 5,
+    nrows: 5
+  }
 
   constructor(props) {
     super(props);
-
-    // TODO: set initial state
     this.state = {
-      hasWon: false
+      hasWon: false,
+      board: [],
     }
   }
 
+  componentDidMount() {
+    this.setState({ ...this.state, board: handleSetBoard(this.props.nrows, this.props.ncols) })
+  }
+
   /** set the board with an array-of-arrays containing true/false for lit or unlit */
-  setBoard = () => { handleSetBoard(); }
+  setBoard = () => { handleSetBoard(this.props.nrows, this.props.ncols); }
 
   /** handle changing a cell: update board & determine if winner */
 
@@ -72,16 +79,18 @@ class Board extends Component {
 
   render() {
 
-    this.setBoard()
-
     // if the game is won, just show a winning msg & render nothing else
 
     // TODO
+    const { board } = this.state;
 
-    // make table board
+    return (
 
-    // TODO
-    return null
+      <article className="Board">
+
+      </article>
+
+    )
   }
 }
 

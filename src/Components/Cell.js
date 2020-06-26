@@ -35,4 +35,4 @@ class Cell extends Component {
 }
 
 
-export default Cell
+export default Cell;
