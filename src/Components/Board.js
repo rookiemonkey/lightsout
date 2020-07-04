@@ -5,13 +5,6 @@ import handleSetBoard from '../Helpers/handleSetBoard';
 import isAllOut from '../Helpers/isAllOut';
 
 class Board extends Component {
-  static defaultProps = {
-    // will only accept two, same odd numbers that is the same
-    // might get some errors in evaluating isInside if not add
-    ncols: 5,
-    nrows: 5
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -53,8 +46,7 @@ class Board extends Component {
 
   render() {
     const { board } = this.state;
-    let grid;
-    if (board.length > 0) {
+    let grid; if (board.length > 0) {
       grid = board.map((r, i) => {
         return setCells(r, i, this.flipCellsAround);
       })
