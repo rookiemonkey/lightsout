@@ -18,7 +18,7 @@ class Menu extends Component {
                     Inspired by
                     <a
                         href="https://en.wikipedia.org/wiki/Lights_Out_(game)"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         target="_blank"
                     > LIGHTS OUT, </a>
                     an electronic game released by Tiger Electronics in 1995
