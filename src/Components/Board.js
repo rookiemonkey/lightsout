@@ -70,6 +70,7 @@ class Board extends Component {
                 <div className='neon-orange'>Lights</div>
                 <div className='neon-blue'>Out</div>
               </div>
+              <div className='Board-title-level'>{this.props.level}</div>
               <table>
                 <tbody>
                   { grid }
