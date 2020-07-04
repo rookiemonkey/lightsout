@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactHowler from 'react-howler'
 import Board from "./Components/Board";
 import Menu from './Components/Menu';
 import handleSetLevel from './Helpers/handleSetLevel';
@@ -28,6 +29,7 @@ class LightsOutApp extends Component {
 
         return (
           <article className='Board'>
+            <ReactHowler src={require('./Music/background.mp3')} loop={true}/>
             {this.state.level ? null : <Menu setLevel={this.setLevel} />}
             {this.state.level ? <Board level={level} ncols={ncols} nrows={nrows} resetGame={this.resetGame}/> : null}
           </article>
