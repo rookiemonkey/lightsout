@@ -14,15 +14,6 @@ class Menu extends Component {
                     <div className='neon-orange'>Lights</div>
                     <div className='neon-blue'>Out</div>
                 </div>
-                <p className='Board-menu-description'>
-                    Inspired by
-                    <a
-                        href="https://en.wikipedia.org/wiki/Lights_Out_(game)"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                    > LIGHTS OUT, </a>
-                    an electronic game released by Tiger Electronics in 1995
-                </p>
 
                 <div className="Board-menu-button-container">
                     <button
@@ -47,6 +38,16 @@ class Menu extends Component {
                     >Hard</button>
                     <span className='Board-menu-button-meta'>9 x 9 Board</span>
                 </div>
+
+                <p className='Board-menu-description'>
+                    Inspired by
+                    <a
+                        href="https://en.wikipedia.org/wiki/Lights_Out_(game)"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                    > LIGHTS OUT, </a>
+                    an electronic game released by Tiger Electronics in 1995
+                </p>
             </div>
 
         )

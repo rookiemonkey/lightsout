@@ -16,7 +16,11 @@ class LightsOutApp extends Component {
     setLevel = lvl => {
         const c = handleSetLevel(lvl);
         this.setState({ level: lvl, ncols: c.ncols, nrows: c.nrows })
-    }
+    };
+
+    resetGame = () => {
+        this.setState({level: '', ncols: 0, nrows: 0})
+    };
 
     render() {
 
@@ -25,7 +29,7 @@ class LightsOutApp extends Component {
         return (
           <article className='Board'>
             {this.state.level ? null : <Menu setLevel={this.setLevel} />}
-            {this.state.level ? <Board level={level} ncols={ncols} nrows={nrows}/> : null}
+            {this.state.level ? <Board level={level} ncols={ncols} nrows={nrows} resetGame={this.resetGame}/> : null}
           </article>
         );
     }

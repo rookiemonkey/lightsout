@@ -40,8 +40,7 @@ class Board extends Component {
   }
 
   handlePlayAgain = () => {
-    const { nrows, ncols } = this.props;
-    this.setState({ hasWon: false, board: handleSetBoard(nrows, ncols) });
+    this.setState({ hasWon: false, board: [] }, ()=>{ this.props.resetGame() });
   }
 
   render() {
