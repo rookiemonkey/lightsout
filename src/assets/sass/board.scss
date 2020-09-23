@@ -33,6 +33,12 @@ table tr:last-child td:last-child {
 .Board-title-level {
     font-family: 'Bangers', cursive;
     font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+
+    span {
+      margin: 0px 10px;
+    }
 }
 
 .neon-orange {
