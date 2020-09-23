@@ -13,7 +13,7 @@
     "react-scripts": "^3.4.3",
     "shortid": "^2.2.15"
   },
-  "scripts": {  
+  "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
