@@ -23,7 +23,7 @@ class Menu extends Component {
                     <span className='Board-menu-button-meta'>5 x 5 Board</span>
                 </div>
 
-                <div  className="Board-menu-button-container">
+                <div className="Board-menu-button-container">
                     <button
                         onClick={this.handleSetLevel}
                         value='Medium'
@@ -31,7 +31,7 @@ class Menu extends Component {
                     <span className='Board-menu-button-meta'>7 x 7 Board</span>
                 </div>
 
-                <div  className="Board-menu-button-container">
+                <div className="Board-menu-button-container">
                     <button
                         onClick={this.handleSetLevel}
                         value='Hard'
@@ -40,13 +40,18 @@ class Menu extends Component {
                 </div>
 
                 <p className='Board-menu-description'>
+                    Instruction: light-up all the cells on the given board
+                </p>
+
+                <p className='Board-menu-description'>
                     Inspired by
                     <a
                         href="https://en.wikipedia.org/wiki/Lights_Out_(game)"
                         rel="noopener noreferrer"
+                        className="wikipedia_link"
                         target="_blank"
                     > LIGHTS OUT, </a>
-                    an electronic game released by Tiger Electronics in 1995
+                    an electronic game <br /> released by Tiger Electronics in 1995
                 </p>
             </div>
 
