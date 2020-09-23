@@ -1,8 +1,8 @@
-import React, {Component} from "react";
-import setCells from '../Helpers/setCells';
-import evaluateFlip from '../Helpers/evaluateFlip';
-import handleSetBoard from '../Helpers/handleSetBoard';
-import isAllOut from '../Helpers/isAllOut';
+import React, { Component } from "react";
+import setCells from '../helpers/setCells';
+import evaluateFlip from '../helpers/evaluateFlip';
+import handleSetBoard from '../helpers/handleSetBoard';
+import isAllOut from '../helpers/isAllOut';
 
 class Board extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class Board extends Component {
     const stateCopy = Object.assign({}, this.state);
     const { nrows, ncols } = this.props;
     const { board } = stateCopy;
-    const [ x, y ] = coord.split("-").map(Number);
+    const [x, y] = coord.split("-").map(Number);
 
     // flips the boolean on board
     evaluateFlip(x, y, board, nrows, ncols);
@@ -40,7 +40,7 @@ class Board extends Component {
   }
 
   handlePlayAgain = () => {
-    this.setState({ hasWon: false, board: [] }, ()=>{ this.props.resetGame() });
+    this.setState({ hasWon: false, board: [] }, () => { this.props.resetGame() });
   }
 
   render() {
@@ -56,26 +56,26 @@ class Board extends Component {
 
         {
           (this.state.hasWon)
-          ? (
-            <div className='winner'>
-              <span className='neon-orange'>YOU</span>
-              <span className='neon-blue'>WIN!</span>
-              <button onClick={this.handlePlayAgain}>Play Again</button>
-            </div>
-            )
-          : (
-            <div>
-              <div className='Board-title'>
-                <div className='neon-orange'>Lights</div>
-                <div className='neon-blue'>Out</div>
+            ? (
+              <div className='winner'>
+                <span className='neon-orange'>YOU</span>
+                <span className='neon-blue'>WIN!</span>
+                <button onClick={this.handlePlayAgain}>Play Again</button>
               </div>
-              <div className='Board-title-level'>{this.props.level}</div>
-              <table>
-                <tbody>
-                  { grid }
-                </tbody>
-              </table>
-            </div>
+            )
+            : (
+              <div>
+                <div className='Board-title'>
+                  <div className='neon-orange'>Lights</div>
+                  <div className='neon-blue'>Out</div>
+                </div>
+                <div className='Board-title-level'>{this.props.level}</div>
+                <table>
+                  <tbody>
+                    {grid}
+                  </tbody>
+                </table>
+              </div>
             )
         }
 
@@ -86,4 +86,3 @@ class Board extends Component {
 
 
 export default Board;
-

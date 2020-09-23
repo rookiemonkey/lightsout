@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import ReactHowler from 'react-howler'
-import Board from "./Components/Board";
-import Menu from './Components/Menu';
-import handleSetLevel from './Helpers/handleSetLevel';
+import Board from "./components/Board";
+import Menu from './components/Menu';
+import handleSetLevel from './helpers/handleSetLevel';
 
 class LightsOutApp extends Component {
     constructor(props) {
@@ -20,7 +20,7 @@ class LightsOutApp extends Component {
     };
 
     resetGame = () => {
-        this.setState({level: '', ncols: 0, nrows: 0})
+        this.setState({ level: '', ncols: 0, nrows: 0 })
     };
 
     render() {
@@ -28,11 +28,11 @@ class LightsOutApp extends Component {
         const { level, ncols, nrows } = this.state;
 
         return (
-          <article className='Board'>
-            <ReactHowler src={require('./Music/background.mp3')} loop={true}/>
-            {this.state.level ? null : <Menu setLevel={this.setLevel} />}
-            {this.state.level ? <Board level={level} ncols={ncols} nrows={nrows} resetGame={this.resetGame}/> : null}
-          </article>
+            <article className='Board'>
+                <ReactHowler src={require('./assets/audio/background.mp3')} loop={true} />
+                {this.state.level ? null : <Menu setLevel={this.setLevel} />}
+                {this.state.level ? <Board level={level} ncols={ncols} nrows={nrows} resetGame={this.resetGame} /> : null}
+            </article>
         );
     }
 }
