@@ -1,9 +1,21 @@
 .Board {
-  transform: scale(0.90);
-  width: 500px;
+  margin-top: 50px !important;
+  max-width: 500px;
   margin: 0 auto;
   border-radius: 10px;
   box-shadow: 0 0 50px #fff, -10px 0 80px #f0f, 10px 0 80px #0ff;
+}
+
+@media (max-width: 600px) {
+  .Board {
+    transform: scale(0.8);
+  }
+}
+
+@media (max-width: 400px) {
+  .Board {
+    transform: scale(0.75);
+  }
 }
 
 table tr:first-child td:first-child {
