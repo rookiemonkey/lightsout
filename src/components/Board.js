@@ -3,19 +3,30 @@ import setCells from '../helpers/setCells';
 import evaluateFlip from '../helpers/evaluateFlip';
 import handleSetBoard from '../helpers/handleSetBoard';
 import isAllOut from '../helpers/isAllOut';
+import timeLapse from '../helpers/formatTime';
 
 class Board extends Component {
   constructor(props) {
     super(props);
     this.state = {
       hasWon: false,
+      ticker: '',
+      time: 0,
       board: [],
     }
   }
 
   componentDidMount() {
     const { nrows, ncols } = this.props;
-    this.setState({ ...this.state, board: handleSetBoard(nrows, ncols) });
+
+    const ticker = setInterval(() => { this.setState({ ...this.state, time: this.state.time + 1 }) }, 1000);
+
+    this.setState({
+      ...this.state,
+      ticker,
+      hasStarted: true,
+      board: handleSetBoard(nrows, ncols)
+    });
   }
 
   /** set the board with an array-of-arrays containing true/false for lit or unlit */
@@ -44,7 +55,7 @@ class Board extends Component {
   }
 
   render() {
-    const { board } = this.state;
+    const { board, time } = this.state;
     let grid; if (board.length > 0) {
       grid = board.map((r, i) => {
         return setCells(r, i, this.flipCellsAround);
@@ -71,6 +82,7 @@ class Board extends Component {
                 </div>
                 <div className='Board-title-level'>
                   <span>Difficulty: {this.props.level}</span>
+                  <span>Lapse Time: {timeLapse(time)}</span>
                   <span onClick={this.handlePlayAgain} >Go Back</span>
                 </div>
                 <table>
