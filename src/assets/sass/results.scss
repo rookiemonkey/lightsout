@@ -1,0 +1,36 @@
+div.result {
+
+    p {
+        font-family: 'Bangers', cursive;
+        font-size: 1.5rem;
+    }
+
+    table {
+        margin: 10px;
+        width: 100%;
+
+        thead, tbody {
+            font-family: 'Bangers', cursive;
+            font-size: 1.5rem;
+        }
+    }
+
+    div.result-preview {
+        font-family: 'Bangers', cursive;
+        font-size: 1.5rem;
+
+        form {
+            input {
+                font-size: 1.5rem;
+                font-family: 'Bangers', cursive;
+                width: 50%;
+                margin: 10px 0px;
+                color: white;
+                text-align: center;
+                background-color: transparent;
+                border: none;
+                border-bottom: 2px solid white !important;
+            }
+        }
+    }
+}

@@ -10,7 +10,7 @@ const setCells = (arr, x, func) => {
 
             <Cell
                 isLit={c}
-                key={shortid.generate()}
+                key={`${x}-${i}`}
                 coordinates={`${x}-${i}`}
                 flipCellsAroundMe={func}
             />

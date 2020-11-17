@@ -1,15 +1,17 @@
 import React, { Component } from "react";
+import Result from '../components/Result';
 import setCells from '../helpers/setCells';
 import evaluateFlip from '../helpers/evaluateFlip';
 import handleSetBoard from '../helpers/handleSetBoard';
 import isAllOut from '../helpers/isAllOut';
-import timeLapse from '../helpers/formatTime';
+import lapsedTime from '../helpers/formatTime';
 
 class Board extends Component {
   constructor(props) {
     super(props);
     this.state = {
       hasWon: false,
+      hasGivenUp: false,
       ticker: '',
       time: 0,
       board: [],
@@ -24,7 +26,6 @@ class Board extends Component {
     this.setState({
       ...this.state,
       ticker,
-      hasStarted: true,
       board: handleSetBoard(nrows, ncols)
     });
   }
@@ -54,8 +55,12 @@ class Board extends Component {
     this.setState({ hasWon: false, board: [] }, () => { this.props.resetGame() });
   }
 
+  handleGiveUp = () => {
+    this.setState({ ...this.state, hasGivenUp: true })
+  }
+
   render() {
-    const { board, time } = this.state;
+    const { board, time, hasGivenUp, hasWon, ticker } = this.state;
     let grid; if (board.length > 0) {
       grid = board.map((r, i) => {
         return setCells(r, i, this.flipCellsAround);
@@ -66,14 +71,8 @@ class Board extends Component {
       <>
 
         {
-          (this.state.hasWon)
-            ? (
-              <div className='winner'>
-                <span className='neon-orange'>YOU</span>
-                <span className='neon-blue'>WIN!</span>
-                <button onClick={this.handlePlayAgain}>Play Again</button>
-              </div>
-            )
+          (hasWon || hasGivenUp)
+            ? <Result handlePlayAgain={this.handlePlayAgain} hasGivenUp={hasGivenUp} score={time} ticker={ticker} difficulty={this.props.level} />
             : (
               <div>
                 <div className='Board-title'>
@@ -82,8 +81,8 @@ class Board extends Component {
                 </div>
                 <div className='Board-title-level'>
                   <span>Difficulty: {this.props.level}</span>
-                  <span>Lapse Time: {timeLapse(time)}</span>
-                  <span onClick={this.handlePlayAgain} >Go Back</span>
+                  <span>Lapse Time: {lapsedTime(time)}</span>
+                  <span onClick={this.handleGiveUp} >Give up</span>
                 </div>
                 <table>
                   <tbody>

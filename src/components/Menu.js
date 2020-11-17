@@ -40,17 +40,17 @@ class Menu extends Component {
                 </div>
 
                 <p className='Board-menu-description'>
-                    Instruction: light-up all the cells on the given board
+                    Instruction: turn off all the cells on the given board
                 </p>
 
                 <p className='Board-menu-description'>
-                    Inspired by
+                    Inspired by &nbsp;
                     <a
                         href="https://en.wikipedia.org/wiki/Lights_Out_(game)"
                         rel="noopener noreferrer"
                         className="wikipedia_link"
                         target="_blank"
-                    > LIGHTS OUT, </a>
+                    >LIGHTS OUT</a>,
                     an electronic game <br /> released by Tiger Electronics in 1995
                 </p>
             </div>
