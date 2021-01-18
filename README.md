@@ -1,13 +1,13 @@
 ## Lights Out
 
-Inspired by  LIGHTS OUT, an electronic game released by Tiger Electronics in 1995 - ![Wikipedia](https://en.wikipedia.org/wiki/Lights_Out_(game)). 
+Inspired by  LIGHTS OUT, an electronic game released by Tiger Electronics in 1995 - [Wikipedia](https://en.wikipedia.org/wiki/Lights_Out_(game)). 
 
-Implemented high scores using HighScores API ![Repo](https://github.com/rookiemonkey/api-high-scores)
+Implemented high scores using HighScores API [Repo](https://github.com/rookiemonkey/api-high-scores)
 
 Consider checking the repo's issues, all of my todos are in there :smile:
 
-![Screenshot](./movieapp1.png)
-![Screenshot](./movieapp2.png)
+![Screenshot](./lightsout1.png)
+![Screenshot](./lightsout2.png)
 
 ## Author: <i>Kevin Roi R. Basina</i>
 <a href="https://github.com/rookiemonkey">
